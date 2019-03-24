@@ -15,14 +15,15 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
  && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Install Forego
-ADD https://github.com/jwilder/forego/releases/download/v0.16.1/forego /usr/local/bin/forego
+ADD ./forego /usr/local/bin/forego
 RUN chmod u+x /usr/local/bin/forego
 
 ENV DOCKER_GEN_VERSION 0.7.4
+ENV DOCKER_PLATFORM armel
 
-RUN wget https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VERSION/docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz \
- && tar -C /usr/local/bin -xvzf docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz \
- && rm /docker-gen-linux-amd64-$DOCKER_GEN_VERSION.tar.gz
+RUN wget https://github.com/jwilder/docker-gen/releases/download/$DOCKER_GEN_VERSION/docker-gen-linux-$DOCKER_PLATFORM-$DOCKER_GEN_VERSION.tar.gz \
+ && tar -C /usr/local/bin -xvzf docker-gen-linux-$DOCKER_PLATFORM-$DOCKER_GEN_VERSION.tar.gz \
+ && rm /docker-gen-linux-$DOCKER_PLATFORM-$DOCKER_GEN_VERSION.tar.gz
 
 COPY network_internal.conf /etc/nginx/
 
