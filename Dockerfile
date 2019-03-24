@@ -7,6 +7,7 @@ RUN apt-get update \
     ca-certificates \
     wget \
     golang \
+    git \
  && apt-get clean \
  && rm -r /var/lib/apt/lists/*
 
@@ -16,9 +17,8 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
  && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Install Forego
-RUN export GOPATH=/app/go && export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-RUN go get -u github.com/ddollar/forego
-RUN cp $GOPATH/bin/forego /usr/local/bin/forego
+RUN GOPATH=/app/go PATH=$PATH:$GOROOT/bin:$GOPATH/bin go get -u github.com/ddollar/forego
+RUN cp /app/go/bin/forego /usr/local/bin/forego
 RUN chmod u+x /usr/local/bin/forego
 
 ENV DOCKER_GEN_VERSION 0.7.4
