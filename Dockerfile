@@ -1,11 +1,12 @@
 FROM nginx:1.14.1
-LABEL maintainer="Jason Wilder mail@jasonwilder.com"
+LABEL maintainer="Abzicht abzicht@gmail.com"
 
-# Install wget and install/updates certificates
+# Install go, wget, and install/updates certificates
 RUN apt-get update \
  && apt-get install -y -q --no-install-recommends \
     ca-certificates \
     wget \
+    golang \
  && apt-get clean \
  && rm -r /var/lib/apt/lists/*
 
@@ -15,7 +16,9 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf \
  && sed -i 's/worker_processes  1/worker_processes  auto/' /etc/nginx/nginx.conf
 
 # Install Forego
-ADD ./forego /usr/local/bin/forego
+RUN export GOPATH=/app/go && export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+RUN go get -u github.com/ddollar/forego
+RUN cp $GOPATH/bin/forego /usr/local/bin/forego
 RUN chmod u+x /usr/local/bin/forego
 
 ENV DOCKER_GEN_VERSION 0.7.4
