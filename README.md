@@ -1,3 +1,9 @@
+> A message from abzicht
+>> This fork manipulates Dockerfile (Dockerfile.alpine not included) to work with arm architecture.
+
+
+
+
 ![latest 0.7.0](https://img.shields.io/badge/latest-0.7.0-green.svg?style=flat)
 ![nginx 1.14.1](https://img.shields.io/badge/nginx-1.14-brightgreen.svg) ![License MIT](https://img.shields.io/badge/license-MIT-blue.svg) [![Build Status](https://travis-ci.org/jwilder/nginx-proxy.svg?branch=master)](https://travis-ci.org/jwilder/nginx-proxy) [![](https://img.shields.io/docker/stars/jwilder/nginx-proxy.svg)](https://hub.docker.com/r/jwilder/nginx-proxy 'DockerHub') [![](https://img.shields.io/docker/pulls/jwilder/nginx-proxy.svg)](https://hub.docker.com/r/jwilder/nginx-proxy 'DockerHub')
 
@@ -128,11 +134,11 @@ backend container. Your backend container should then listen on a port rather
 than a socket and expose that port.
 
 ### FastCGI Backends
- 
+
 If you would like to connect to FastCGI backend, set `VIRTUAL_PROTO=fastcgi` on the
 backend container. Your backend container should then listen on a port rather
 than a socket and expose that port.
- 
+
 ### FastCGI Filr Root Directory
 
 If you use fastcgi,you can set `VIRTUAL_ROOT=xxx`  for your root directory
@@ -294,11 +300,11 @@ site after changing this setting, your browser has probably cached the HSTS poli
 redirecting you back to HTTPS.  You will need to clear your browser's HSTS cache or use an incognito
 window / different browser.
 
-By default, [HTTP Strict Transport Security (HSTS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) 
-is enabled with `max-age=31536000` for HTTPS sites.  You can disable HSTS with the environment variable 
+By default, [HTTP Strict Transport Security (HSTS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security)
+is enabled with `max-age=31536000` for HTTPS sites.  You can disable HSTS with the environment variable
 `HSTS=off` or use a custom HSTS configuration like `HSTS=max-age=31536000; includeSubDomains; preload`.  
-*WARNING*: HSTS will force your users to visit the HTTPS version of your site for the `max-age` time - 
-even if they type in `http://` manually.  The only way to get to an HTTP site after receiving an HSTS 
+*WARNING*: HSTS will force your users to visit the HTTPS version of your site for the `max-age` time -
+even if they type in `http://` manually.  The only way to get to an HTTP site after receiving an HSTS
 response is to clear your browser's HSTS cache.
 
 ### Basic Authentication Support
